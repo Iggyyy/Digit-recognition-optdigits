@@ -7,10 +7,10 @@ images, labels, t_images, t_labels = GetData.imgs, GetData.labels, GetData.t_img
 DATAPOINTS = len(images)
 DP_SHAPE = len(images[0])
 HIDDEN_SIZE = 50
-ITERATIONS  = 500
+ITERATIONS  = 140
 BATCH_SIZE = 20
 LABELS_SIZE = len(labels[0])
-ALPHA = 0.05
+ALPHA = 0.5
 #TODO implement proper softmax and tanh
 w_01 = 0.2 * np.random.random((DP_SHAPE, HIDDEN_SIZE)) - 0.1
 w_12 = 0.2 * np.random.random((HIDDEN_SIZE, LABELS_SIZE)) - 0.1
@@ -45,7 +45,7 @@ for it in range(ITERATIONS):
         drop_mask =  np.random.randint(2, size = lay_1.shape)
         lay_1 *= drop_mask * 2
 
-        lay_2 = np.dot(lay_1, w_12)
+        lay_2 = softmax(np.dot(lay_1, w_12))
 
         error += np.sum( (labels[b_start:b_end] - lay_2) ** 2 )
 
