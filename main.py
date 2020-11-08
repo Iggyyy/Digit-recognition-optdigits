@@ -1,6 +1,6 @@
 import numpy as np
 from readcsv import GetData
-
+#import
 np.random.seed(1)
 images, labels, t_images, t_labels = GetData.imgs, GetData.labels, GetData.t_imgs, GetData.t_labels
 
