@@ -6,9 +6,9 @@ images, labels, t_images, t_labels = GetData.imgs, GetData.labels, GetData.t_img
 
 DATAPOINTS = len(images)
 DP_SHAPE = len(images[0])
-HIDDEN_SIZE = 20
-ITERATIONS  = 230
-BATCH_SIZE = 8
+HIDDEN_SIZE = 50
+ITERATIONS  = 500
+BATCH_SIZE = 20
 LABELS_SIZE = len(labels[0])
 ALPHA = 0.05
 #TODO implement proper softmax and tanh
@@ -20,7 +20,8 @@ def tanh(x):
 def tanh_deriv(x):
     return 1 - (x**2)
 def softmax(x):
-    tmp = np.exp(x - np.max(x))
+    z = x - np.max(x)
+    tmp = np.exp(z)
     #print(tmp)
     return tmp / np.sum(tmp, axis=1, keepdims=True)
 
@@ -39,7 +40,7 @@ for it in range(ITERATIONS):
         b_start, b_end = (BATCH_SIZE*i, BATCH_SIZE*(i+1))
 
         lay_0 = images[b_start:b_end]
-        lay_1 = relu(np.dot(lay_0, w_01))
+        lay_1 = tanh(np.dot(lay_0, w_01))
 
         drop_mask =  np.random.randint(2, size = lay_1.shape)
         lay_1 *= drop_mask * 2
@@ -53,7 +54,7 @@ for it in range(ITERATIONS):
 
         delta_2 =  (( labels[b_start: b_end] - lay_2 ) / ( BATCH_SIZE * lay_2.shape[0] ) )
 
-        delta_1 = np.dot(delta_2, w_12.T) * relu_deriv(lay_1)
+        delta_1 = np.dot(delta_2, w_12.T) * tanh_deriv(lay_1)
 
         delta_1 *= drop_mask
 
