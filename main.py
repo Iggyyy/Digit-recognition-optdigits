@@ -7,11 +7,11 @@ images, labels, t_images, t_labels = GetData.imgs, GetData.labels, GetData.t_img
 DATAPOINTS = len(images)
 DP_SHAPE = len(images[0])
 HIDDEN_SIZE = 50
-ITERATIONS  = 140
-BATCH_SIZE = 20
+ITERATIONS  = 130
+BATCH_SIZE = 60
 LABELS_SIZE = len(labels[0])
 ALPHA = 0.5
-#TODO implement proper softmax and tanh
+
 w_01 = 0.2 * np.random.random((DP_SHAPE, HIDDEN_SIZE)) - 0.1
 w_12 = 0.2 * np.random.random((HIDDEN_SIZE, LABELS_SIZE)) - 0.1
 

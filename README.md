@@ -3,7 +3,7 @@
 *** 
 
 ### Basic info
-#### There is around 5,5k datapoints split into training and testing data. There are three layers, input, hidden and output. I've been adjusting net parameters to get the best results, and atm acurracy is ~89% . 
+#### There is around 5,5k datapoints split into training and testing data. There are three layers, input, hidden and output. I've been adjusting net parameters to get the best results, and the best accuracy I've had is 93.3%.
 &nbsp;
 
 #### Net is built with: 

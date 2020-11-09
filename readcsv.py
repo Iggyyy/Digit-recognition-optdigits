@@ -41,8 +41,8 @@ class GetData:
     t_imgs = imgs[0:1000]
     t_labels = labels[0:1000]
 
-    imgs = imgs[1000:2000]
-    labels = labels[1000:2000]
+    imgs = imgs[1000:]
+    labels = labels[1000:]
 
    
     
